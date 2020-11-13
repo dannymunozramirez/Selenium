@@ -15,7 +15,7 @@ public class UseMethods {
 
 	/**
 	 * This method will open the web site to test, it will get the info about it
-	 * from StaticsSC class
+	 * from StaticsSC class*******************
 	 */
 	public void opening(WebDriver driver) {
 
