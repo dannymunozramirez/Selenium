@@ -8,6 +8,12 @@ import org.openqa.selenium.interactions.Actions;
 import methodsForAutomationSC.UseMethods;
 import staticsForAutomationSC.StaticsSC;
 
+/**
+ * 
+ * @author dannymunoz This class contains all the method for run a successful
+ *         first scenario in the Second Cup Coffee Project MCIT
+ *
+ */
 public class TestCaseSC {
 	static StaticsSC st = new StaticsSC();
 	WebDriver driver;
@@ -17,15 +23,25 @@ public class TestCaseSC {
 
 	}
 
+	/**
+	 * 
+	 * @param form
+	 * @throws InterruptedException This method will open the browser then it gets
+	 *                              the data to fill out the form to test through
+	 *                              the Map it set the data into the StaticSC class
+	 *                              then it gets and send the keys values using the
+	 *                              methods in UseMethod class.
+	 */
 	public void firstScenarioCreateNewUser(Map<String, String> form) throws InterruptedException {
 		// Instance to Generic-methods
 		UseMethods sc = new UseMethods();
 		Actions act = new Actions(driver);
-
-		sc.opening(driver);
-
 		int timeWait = 2000;
 
+		//Opening Browser
+		sc.opening(driver);
+
+		//Looping and setting data into StaticSC class
 		for (Map.Entry<String, String> entry : form.entrySet()) {
 			String key = entry.getKey().toLowerCase();
 
@@ -79,6 +95,9 @@ public class TestCaseSC {
 
 		}
 
+		/**
+		 * Clicking and sending keys obtained  from StaticSC
+		 */
 		try {
 			Thread.sleep(timeWait);
 			sc.getElement(driver, StaticsSC.REWARDS_BUTTON_CSS, StaticsSC.CSS).click();
