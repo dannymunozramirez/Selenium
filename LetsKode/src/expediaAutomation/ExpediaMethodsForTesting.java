@@ -6,15 +6,14 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import javaClasses.StaticClass;
 
 public class ExpediaMethodsForTesting extends StaticClass {
 
-	@Override
-	public void opening() {
-		WebDriver driver = new ChromeDriver();
+	/**
+	 * 
+	 */
+	public void opening(WebDriver driver) {
 		System.setProperty(StaticClass.KEY, StaticClass.PATH);
 		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -22,6 +21,13 @@ public class ExpediaMethodsForTesting extends StaticClass {
 
 	}
 
+	/**
+	 * 
+	 * @param driver
+	 * @param locator
+	 * @param type
+	 * @return
+	 */
 	public WebElement getElement(WebDriver driver, String locator, String type) {
 		type = type.toLowerCase();
 
@@ -44,6 +50,13 @@ public class ExpediaMethodsForTesting extends StaticClass {
 			return null;
 	}
 
+	/**
+	 * 
+	 * @param driver
+	 * @param locator
+	 * @param type
+	 * @return
+	 */
 	public List<WebElement> getElements(WebDriver driver, String locator, String type) {
 		type = type.toLowerCase();
 
@@ -66,72 +79,174 @@ public class ExpediaMethodsForTesting extends StaticClass {
 			return null;
 	}
 
+	/**
+	 * 
+	 * @param driver
+	 * @param choosen
+	 */
 	public void optionSelection(WebDriver driver, String choosen) {
-		List<WebElement> choose = driver.findElements(By.cssSelector("a.uitk-tab-anchor"));
+		// For Statics
+		String iconsForChoose = "a.uitk-tab-anchor";
+		// ===========================================//
+		
+		List<WebElement> choose = getElements(driver, iconsForChoose, "css");
 		for (WebElement we : choose) {
 			if (we.getAttribute("aria-controls").contains(choosen)) {
-				System.out.println("Tu seleccion es: " + choosen);
 				we.click();
 			}
 		}
 
 	}
 
-	public void selectFrom() {
+	/**
+	 * 
+	 * @param driver
+	 * @param where
+	 * @param country
+	 * @throws InterruptedException
+	 */
+	public void selectFrom(WebDriver driver, String from, String country) throws InterruptedException {
+		// For static class
+		String listFromCity = "//strong[contains(text(), '" + from
+				+ "')]//parent::span//parent::div//parent::div//parent::button";
+		String listFromCountry = "div[class=\"is-subText truncate\"]";
+		String flightBtn = "a[href='?pwaLob=wizard-flight-pwa']";
+		String fromImput = "button[aria-label='Leaving from']";
+		String cityFromToFillOut = "input[data-stid=\"location-field-leg1-origin-menu-input\"]";
+
+		// ===========================================//
+
+		getElement(driver, flightBtn, "css").click();
+		Thread.sleep(2000);
+		getElement(driver, fromImput, "css").click();
+		;
+		Thread.sleep(2000);
+		getElement(driver, cityFromToFillOut, "css").sendKeys(from);
+		Thread.sleep(2000);
+
+		List<WebElement> fromList = getElements(driver, listFromCity, "xpath");
+		List<WebElement> countryLi = getElements(driver, listFromCountry, "css");
+
+		for (WebElement we : fromList) {
+
+			if (we.getText().contains(from)) {
+				for (WebElement we2 : countryLi) {
+					if (we2.getText().contains(country)) {
+						we2.click();
+					}
+
+				}
+			}
+
+		}
 
 	}
 
-	public void selectTo() {
+	/**
+	 * 
+	 * @param driver
+	 * @param to
+	 * @param country
+	 * @throws InterruptedException
+	 */
+	public void selectTo(WebDriver driver, String to, String country) throws InterruptedException {
+		// Send to Static
+		String builCitesTo = "//strong[contains(text(), '" + to
+				+ "')]//parent::span//parent::div//parent::div//parent::button";
+		String buildCountryTo = "//button//div//following-sibling::div";
+		String buttonSelectCityTo = "button[aria-label=\"Going to\"]";
+		String inputCityTo = "input[data-stid=\"location-field-leg1-destination-menu-input\"]";
+
+		// ===========================================//
+
+		Thread.sleep(2000);
+		getElement(driver, buttonSelectCityTo, "css").click();
+		Thread.sleep(2000);
+		getElement(driver, inputCityTo, "css").sendKeys(to);
+		Thread.sleep(2000);
+
+		List<WebElement> toList = getElements(driver, builCitesTo, "xpath");
+
+		List<WebElement> countryTo = getElements(driver, buildCountryTo, "xpath");
+
+		for (WebElement we : countryTo) {
+			if (we.getText().contains(country)) {
+				for (WebElement we2 : toList) {
+					if (we2.getText().contains(to)) {
+						Thread.sleep(2000);
+						we2.click();
+					}
+				}
+			}
+
+		}
 
 	}
 
 	//
 
-	public void mesesActuales(WebDriver driver, String mesDep, String day, String mesRet, String dayRet) {
+	/**
+	 * 
+	 * @param driver
+	 * @param mesDep
+	 * @param day
+	 * @param mesRet
+	 * @param dayRet
+	 */
+	public void mesesActuales(WebDriver driver, String mesDep, String day, String mesRet, String dayRet, String yearDep,
+			String yearRet) {
+
+		String dateDep = mesDep + " " + day + ", " + yearDep;
+		String dateRet = mesRet + " " + dayRet + ", " + yearRet;
 
 		List<WebElement> li = getElements(driver, "button[class*='uitk-new-date-picker-day']", "css");
 
 		for (WebElement we : li) {
 
-			if (we.getAttribute("aria-label").contains(mesDep) && we.getAttribute("aria-label").contains(day)) {
-				System.out.println("Aca lo encontro primer loop!!!");
-				System.out.println(we.getAttribute("aria-label"));
+			if (we.getAttribute("aria-label").equals(dateDep)) {
 				we.click();
-
 			}
-			if (we.getAttribute("aria-label").contains(mesRet) && we.getAttribute("aria-label").contains(dayRet)) {
-				System.out.println("Aca lo encontro primer loop!!!");
-				System.out.println(we.getAttribute("aria-label"));
+			if (we.getAttribute("aria-label").equals(dateRet)) {
 				we.click();
-				driver.findElement(By.cssSelector("button[data-stid='apply-date-picker']")).click();
+				getElement(driver, "button[data-stid='apply-date-picker']", "css");
 				break;
 			}
 		}
 	}
 
-	public void mesesPosteriores(WebDriver driver, String mesDep, String day, String mesRet, String dayRet)
-			throws InterruptedException {
-		
-		driver.findElement(By.cssSelector("button#d1-btn")).click();
-
-		List<WebElement> li4 = driver.findElements(By.cssSelector("button[class*='uitk-new-date-picker-day']"));
-		WebElement next = driver.findElement(By.xpath("//div[@class='uitk-calendar']//button[@type='button'][2]"));
-
+	/**
+	 * 
+	 * @param driver
+	 * @param mesDep
+	 * @param day
+	 * @param mesRet
+	 * @param dayRet
+	 * @param yearDep
+	 * @param yearRet
+	 * @throws InterruptedException
+	 */
+	public void mesesPosteriores(WebDriver driver, String mesDep, String day, String mesRet, String dayRet,
+			String yearDep, String yearRet) throws InterruptedException {
+		// Building String Date
 		boolean flag = false;
+		String dateDep = mesDep + " " + day + ", " + yearDep;
+		String dateRet = mesRet + " " + dayRet + ", " + yearRet;
+
+		getElement(driver, "button#d1-btn", "css").click();
+		;
+
+		List<WebElement> li4 = getElements(driver, "button[class*='uitk-new-date-picker-day']", "css");
+		WebElement next = getElement(driver, "//div[@class='uitk-calendar']//button[@type='button'][2]", "xpath");
 
 		for (WebElement we : li4) {
 
-			System.out.println("################################");
-			System.out.println(we.getAttribute("aria-label"));
-			System.out.println("################################");
-			if (we.getAttribute("aria-label").contains(mesDep) && we.getAttribute("aria-label").contains(day)) {
-				System.out.println("Aca lo encontro primer loop!!!");
+			if (we.getAttribute("aria-label").equals(dateDep)) {
+
 				System.out.println(we.getAttribute("aria-label"));
 				we.click();
 
 			}
-			if (we.getAttribute("aria-label").contains(mesRet) && we.getAttribute("aria-label").contains(dayRet)) {
-				System.out.println("Aca lo encontro primer loop!!!");
+			if (we.getAttribute("aria-label").equals(dateRet)) {
 				System.out.println(we.getAttribute("aria-label"));
 				we.click();
 				flag = true;
@@ -143,22 +258,20 @@ public class ExpediaMethodsForTesting extends StaticClass {
 					do {
 						next.click();
 						Thread.sleep(2000);
-						li4 = driver.findElements(By.cssSelector("button[class*='uitk-new-date-picker-day']"));
+						li4 = getElements(driver, "button[class*='uitk-new-date-picker-day']", "css");
 						System.out.println("Cambiando los valores de la lista");
 						for (WebElement we2 : li4) {
-							if (we2.getAttribute("aria-label").contains(mesDep)
-									&& we2.getAttribute("aria-label").contains(day)) {
+							if (we2.getAttribute("aria-label").equals(dateDep)) {
 								System.out.println("Aca lo encontro!!!");
 								System.out.println(we2.getAttribute("aria-label"));
 								we2.click();
 
 							}
-							if (we2.getAttribute("aria-label").contains(mesRet)
-									&& we2.getAttribute("aria-label").contains(dayRet)) {
+							if (we2.getAttribute("aria-label").equals(dateRet)) {
 								System.out.println("Aca lo encontro!!!");
 								System.out.println(we2.getAttribute("aria-label"));
 								we2.click();
-								driver.findElement(By.cssSelector("button[data-stid='apply-date-picker']")).click();
+								getElement(driver, "button[data-stid='apply-date-picker']", "css");
 								flag = true;
 								break;
 							}

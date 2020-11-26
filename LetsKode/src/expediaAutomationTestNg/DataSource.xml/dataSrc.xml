@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="sampleSuite">
+	<test name="DataResourceTestExpedia">
+		<parameter name="Test_1" value="Value 1"></parameter>
+		<parameter name="Test_2" value="Value 2"></parameter>
+		<parameter name="Test_3" value="Value 1"></parameter>
+		<parameter name="Test_4" value="Value 2"></parameter>
+		<parameter name="Test_5" value="Value 1"></parameter>
+		<parameter name="Test_6" value="Value 2"></parameter>
+		<parameter name="Test_7" value="Value 1"></parameter>
+		<parameter name="Test_8" value="Value 2"></parameter>
+		<parameter name="Test_9" value="Value 1"></parameter>
+		<parameter name="Test_10" value="Value 2"></parameter>
+		<parameter name="Test_11" value="Value 1"></parameter>
+
+		<classes>
+			<class name="testNG.Demo3">
+			</class>
+		</classes>
+	</test>
+
+
+</suite>

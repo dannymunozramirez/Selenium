@@ -1,15 +1,20 @@
 package javaClasses;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 public class StaticClass implements TestSteps {
 	
 	//WebElements to use//
 	
-	private String depDay;
-	private String arrtDay;
-	private String button;
+	private String mesDep = "Mar";
+	private String day = "2";
+	private String mesRet = "Jun";
+	private String dayRet = "2";
+	private String choosen = "flight";
+	private String yearDep = "2021";
+	private String yearRet = "2021";
+	private String fromCity = "Santiago";
+	private String fromCountry = "Chile";
+	private String toCity = "Montreal";
+	private String toCountry = "Canada";
 	
 	
 
@@ -71,29 +76,98 @@ public class StaticClass implements TestSteps {
 
 	}
 
-	public String getDepDay() {
-		return depDay;
+	public String getMesDep() {
+		return mesDep;
 	}
 
-	public void setDepDay(String depDay) {
-		this.depDay = depDay;
+	public void setMesDep(String mesDep) {
+		this.mesDep = mesDep;
 	}
 
-	public String getArrtDay() {
-		return arrtDay;
+	public String getDay() {
+		return day;
 	}
 
-	public void setArrtDay(String arrtDay) {
-		this.arrtDay = arrtDay;
+	public void setDay(String day) {
+		this.day = day;
 	}
 
-	public String getButton() {
-		return button;
+	public String getMesRet() {
+		return mesRet;
 	}
 
-	public void setButton(String button) {
-		this.button = button;
+	public void setMesRet(String mesRet) {
+		this.mesRet = mesRet;
 	}
+
+	public String getDayRet() {
+		return dayRet;
+	}
+
+	public void setDayRet(String dayRet) {
+		this.dayRet = dayRet;
+	}
+
+	public String getChoosen() {
+		return choosen;
+	}
+
+	public void setChoosen(String choosen) {
+		this.choosen = choosen;
+	}
+
+	public String getYearDep() {
+		return yearDep;
+	}
+
+	public void setYearDep(String yearDep) {
+		this.yearDep = yearDep;
+	}
+
+	public String getYearRet() {
+		return yearRet;
+	}
+
+	public void setYearRet(String yearRet) {
+		this.yearRet = yearRet;
+	}
+
+	public String getFromCity() {
+		return fromCity;
+	}
+
+	public void setFromCity(String fromCity) {
+		this.fromCity = fromCity;
+	}
+
+	public String getFromCountry() {
+		return fromCountry;
+	}
+
+	public void setFromCountry(String fromCountry) {
+		this.fromCountry = fromCountry;
+	}
+
+	public String getToCity() {
+		return toCity;
+	}
+
+	public void setToCity(String toCity) {
+		this.toCity = toCity;
+	}
+
+	public String getToCountry() {
+		return toCountry;
+	}
+
+	public void setToCountry(String toCountry) {
+		this.toCountry = toCountry;
+	}
+	
+	//VARIABLES GETTERS
+	// ===================================================//
+	
+	
 	
 	
 
