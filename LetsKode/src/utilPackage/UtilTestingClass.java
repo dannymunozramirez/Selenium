@@ -21,14 +21,14 @@ import javaClasses.StaticClass;
  *         Canada), respective.
  */
 public class UtilTestingClass extends StaticClass {
-
+	
 	static WebDriver driver;
-	static String mesDep = "Mar";
-	static String day = "2";
-	static String mesRet = "Jun";
-	static String dayRet = "2";
+	static String mesDep = "Dec";
+	static String day = "17";
+	static String mesRet = "Feb";
+	static String dayRet = "28";
 	static String choosen = "flight";
-	static String yearDep = "2021";
+	static String yearDep = "2020";
 	static String yearRet = "2021";
 	static String fromCity = "Santiago";
 	static String fromCountry = "Chile";
@@ -50,6 +50,7 @@ public class UtilTestingClass extends StaticClass {
 
 		// Selecting Days from the calendar
 		obj.mesesPosteriores(driver, mesDep, day, mesRet, dayRet, yearDep, yearRet);
+		//obj.mesesActuales(driver, mesDep, day, mesRet, dayRet, yearDep, yearRet);
 
 		Thread.sleep(2000);
 

@@ -1,17 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2020-11-25T19:38:10 EST" name="Default suite" finished-at="2020-11-25T19:38:15 EST" duration-ms="4328">
+  <suite started-at="2020-12-16T18:40:35 EST" name="Default suite" finished-at="2020-12-16T18:41:51 EST" duration-ms="76429">
     <groups>
     </groups>
-    <test started-at="2020-11-25T19:38:10 EST" name="Default test" finished-at="2020-11-25T19:38:15 EST" duration-ms="4328">
+    <test started-at="2020-12-16T18:40:35 EST" name="Default test" finished-at="2020-12-16T18:41:51 EST" duration-ms="76429">
       <class name="expediaAutomationTestNg.ExpediaAutomation">
-        <test-method is-config="true" signature="beforeTest()[pri:0, instance:expediaAutomationTestNg.ExpediaAutomation@5c1a8622]" started-at="2020-11-25T19:38:10 EST" name="beforeTest" finished-at="2020-11-25T19:38:15 EST" duration-ms="4305" status="PASS">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:expediaAutomationTestNg.ExpediaAutomation@3a079870]" started-at="2020-12-16T18:40:35 EST" name="beforeTest" finished-at="2020-12-16T18:41:17 EST" duration-ms="41863" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method signature="testDataFromXml(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:expediaAutomationTestNg.ExpediaAutomation@5c1a8622]" started-at="2020-11-25T19:38:15 EST" name="testDataFromXml" finished-at="2020-11-25T19:38:15 EST" duration-ms="5" status="PASS">
+        <test-method signature="test(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:expediaAutomationTestNg.ExpediaAutomation@3a079870]" started-at="2020-12-16T18:41:17 EST" name="test" data-provider="data" finished-at="2020-12-16T18:41:51 EST" duration-ms="34541" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Mar]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Jun]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[flight]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[2021]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[2021]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[Santiago]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[Chile]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[Montreal]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[Canada]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+        <test-method signature="testDataFromXml(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:expediaAutomationTestNg.ExpediaAutomation@3a079870]" started-at="2020-12-16T18:41:51 EST" name="testDataFromXml" finished-at="2020-12-16T18:41:51 EST" duration-ms="2" status="PASS">
           <params>
             <param index="0">
               <value>

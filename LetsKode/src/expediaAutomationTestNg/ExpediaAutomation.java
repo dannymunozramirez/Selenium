@@ -9,7 +9,18 @@ import org.testng.annotations.*;
 import expediaAutomation.ExpediaMethodsForTesting;
 import javaClasses.StaticClass;
 
+/**
+ * 
+ * @author dannymunoz danny.munoz.ramirez@gmail.com This class will run a test
+ *         for expedia web site, where it will get the flight mode then it will
+ *         get a date of departure and return, selected from the calendar
+ *         displayed, also will get the city from and city to, all of this using
+ *         testNg annotations and generating a report for this test case.
+ *
+ */
+
 public class ExpediaAutomation extends StaticClass {
+	
 	WebDriver driver;
 	String mesDep = "Mar";
 	String day = "2";

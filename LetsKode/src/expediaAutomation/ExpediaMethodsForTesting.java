@@ -85,11 +85,8 @@ public class ExpediaMethodsForTesting extends StaticClass {
 	 * @param choosen
 	 */
 	public void optionSelection(WebDriver driver, String choosen) {
-		// For Statics
-		String iconsForChoose = "a.uitk-tab-anchor";
-		// ===========================================//
-		
-		List<WebElement> choose = getElements(driver, iconsForChoose, "css");
+		// Matching the chosen section in the menu bar, and clicking
+		List<WebElement> choose = getElements(driver, StaticClass.MENU_BAR, "css");
 		for (WebElement we : choose) {
 			if (we.getAttribute("aria-controls").contains(choosen)) {
 				we.click();
@@ -106,26 +103,16 @@ public class ExpediaMethodsForTesting extends StaticClass {
 	 * @throws InterruptedException
 	 */
 	public void selectFrom(WebDriver driver, String from, String country) throws InterruptedException {
-		// For static class
-		String listFromCity = "//strong[contains(text(), '" + from
-				+ "')]//parent::span//parent::div//parent::div//parent::button";
-		String listFromCountry = "div[class=\"is-subText truncate\"]";
-		String flightBtn = "a[href='?pwaLob=wizard-flight-pwa']";
-		String fromImput = "button[aria-label='Leaving from']";
-		String cityFromToFillOut = "input[data-stid=\"location-field-leg1-origin-menu-input\"]";
-
-		// ===========================================//
-
-		getElement(driver, flightBtn, "css").click();
+		getElement(driver, StaticClass.FLIGHT_BUTTON, "css").click();
 		Thread.sleep(2000);
-		getElement(driver, fromImput, "css").click();
-		;
+		getElement(driver, StaticClass.FROM_IMPUT, "css").click();
 		Thread.sleep(2000);
-		getElement(driver, cityFromToFillOut, "css").sendKeys(from);
+		getElement(driver, StaticClass.CITY_FROM_FILL_OUT, "css").sendKeys(from);
 		Thread.sleep(2000);
 
-		List<WebElement> fromList = getElements(driver, listFromCity, "xpath");
-		List<WebElement> countryLi = getElements(driver, listFromCountry, "css");
+		List<WebElement> fromList = getElements(driver,
+				StaticClass.FROM_CITY_PATH_ONE + from + StaticClass.FROM_CITY_PATH_TWO, "xpath");
+		List<WebElement> countryLi = getElements(driver, StaticClass.FROM_COUNTRY_PATH, "css");
 
 		for (WebElement we : fromList) {
 
@@ -150,24 +137,16 @@ public class ExpediaMethodsForTesting extends StaticClass {
 	 * @throws InterruptedException
 	 */
 	public void selectTo(WebDriver driver, String to, String country) throws InterruptedException {
-		// Send to Static
-		String builCitesTo = "//strong[contains(text(), '" + to
-				+ "')]//parent::span//parent::div//parent::div//parent::button";
-		String buildCountryTo = "//button//div//following-sibling::div";
-		String buttonSelectCityTo = "button[aria-label=\"Going to\"]";
-		String inputCityTo = "input[data-stid=\"location-field-leg1-destination-menu-input\"]";
-
-		// ===========================================//
-
 		Thread.sleep(2000);
-		getElement(driver, buttonSelectCityTo, "css").click();
+		getElement(driver, StaticClass.SELECT_CITY_TO_BUTTON, "css").click();
 		Thread.sleep(2000);
-		getElement(driver, inputCityTo, "css").sendKeys(to);
+		getElement(driver, StaticClass.INPUT_CITY_TO, "css").sendKeys(to);
 		Thread.sleep(2000);
 
-		List<WebElement> toList = getElements(driver, builCitesTo, "xpath");
+		List<WebElement> toList = getElements(driver, StaticClass.TO_CITY_PATH_ONE + to + StaticClass.TO_CITY_PATH_TWO,
+				"xpath");
 
-		List<WebElement> countryTo = getElements(driver, buildCountryTo, "xpath");
+		List<WebElement> countryTo = getElements(driver, StaticClass.TO_COUNTRY_PATH, "xpath");
 
 		for (WebElement we : countryTo) {
 			if (we.getText().contains(country)) {
@@ -233,19 +212,38 @@ public class ExpediaMethodsForTesting extends StaticClass {
 		String dateRet = mesRet + " " + dayRet + ", " + yearRet;
 
 		getElement(driver, "button#d1-btn", "css").click();
-		;
 
-		List<WebElement> li4 = getElements(driver, "button[class*='uitk-new-date-picker-day']", "css");
-		WebElement next = getElement(driver, "//div[@class='uitk-calendar']//button[@type='button'][2]", "xpath");
+		List<WebElement> li4 = getElements(driver, StaticClass.DAYS_OF_THE_CALENDAR, "css");
+		WebElement next = getElement(driver, StaticClass.NEXT_MONTH_CALENDAR_BUTTON, "xpath");
+
+//		for (WebElement we : li4) {
+//			if (we.getAttribute("aria-label").equals(dateDep)) {
+//				System.out.println(we.getAttribute("aria-label"));
+//				we.click();
+//
+//			}
+//		}
+//		for (WebElement we : li4) {
+//			if (we.getAttribute("aria-label").equals(dateRet)) {
+//				System.out.println(we.getAttribute("aria-label"));
+//				we.click();
+//				flag = true;
+//				getElement(driver, StaticClass.FINAL_BUTTON_PICKER_CALENDAR, "css").click();;
+//				break;
+//			}
+//		}
 
 		for (WebElement we : li4) {
 
-			if (we.getAttribute("aria-label").equals(dateDep)) {
-
-				System.out.println(we.getAttribute("aria-label"));
-				we.click();
+			for (WebElement weFirst : li4) {
+				if (weFirst.getAttribute("aria-label").equals(dateDep)) {
+					System.out.println(we.getAttribute("aria-label"));
+					weFirst.click();
+					
+				}
 
 			}
+
 			if (we.getAttribute("aria-label").equals(dateRet)) {
 				System.out.println(we.getAttribute("aria-label"));
 				we.click();
@@ -258,20 +256,20 @@ public class ExpediaMethodsForTesting extends StaticClass {
 					do {
 						next.click();
 						Thread.sleep(2000);
-						li4 = getElements(driver, "button[class*='uitk-new-date-picker-day']", "css");
-						System.out.println("Cambiando los valores de la lista");
+						li4 = getElements(driver, StaticClass.DAYS_OF_THE_CALENDAR, "css");
+
 						for (WebElement we2 : li4) {
 							if (we2.getAttribute("aria-label").equals(dateDep)) {
-								System.out.println("Aca lo encontro!!!");
+
 								System.out.println(we2.getAttribute("aria-label"));
 								we2.click();
 
 							}
 							if (we2.getAttribute("aria-label").equals(dateRet)) {
-								System.out.println("Aca lo encontro!!!");
+
 								System.out.println(we2.getAttribute("aria-label"));
 								we2.click();
-								getElement(driver, "button[data-stid='apply-date-picker']", "css");
+								getElement(driver, StaticClass.FINAL_BUTTON_PICKER_CALENDAR, "css");
 								flag = true;
 								break;
 							}
@@ -280,7 +278,7 @@ public class ExpediaMethodsForTesting extends StaticClass {
 					} while (!flag);
 					break;
 				} catch (Exception e) {
-					System.out.println("Element found in the list");
+					System.out.println("Element not found in the list");
 
 				}
 			}
