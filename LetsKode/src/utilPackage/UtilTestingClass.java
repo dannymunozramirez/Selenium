@@ -24,8 +24,8 @@ public class UtilTestingClass extends StaticClass {
 	
 	static WebDriver driver;
 	static String mesDep = "Dec";
-	static String day = "17";
-	static String mesRet = "Feb";
+	static String day = "18";
+	static String mesRet = "Mar";
 	static String dayRet = "28";
 	static String choosen = "flight";
 	static String yearDep = "2020";
@@ -59,7 +59,7 @@ public class UtilTestingClass extends StaticClass {
 		Thread.sleep(2000);
 		obj.selectTo(driver, toCity, toCity);
 		// driver.close();
-		driver.close();
+//		driver.close();
 
 	}
 

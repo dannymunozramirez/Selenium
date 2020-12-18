@@ -208,6 +208,7 @@ public class ExpediaMethodsForTesting extends StaticClass {
 			String yearDep, String yearRet) throws InterruptedException {
 		// Building String Date
 		boolean flag = false;
+		boolean flag_two = false;
 		String dateDep = mesDep + " " + day + ", " + yearDep;
 		String dateRet = mesRet + " " + dayRet + ", " + yearRet;
 
@@ -216,74 +217,78 @@ public class ExpediaMethodsForTesting extends StaticClass {
 		List<WebElement> li4 = getElements(driver, StaticClass.DAYS_OF_THE_CALENDAR, "css");
 		WebElement next = getElement(driver, StaticClass.NEXT_MONTH_CALENDAR_BUTTON, "xpath");
 
-//		for (WebElement we : li4) {
-//			if (we.getAttribute("aria-label").equals(dateDep)) {
-//				System.out.println(we.getAttribute("aria-label"));
-//				we.click();
-//
-//			}
-//		}
-//		for (WebElement we : li4) {
-//			if (we.getAttribute("aria-label").equals(dateRet)) {
-//				System.out.println(we.getAttribute("aria-label"));
-//				we.click();
-//				flag = true;
-//				getElement(driver, StaticClass.FINAL_BUTTON_PICKER_CALENDAR, "css").click();;
-//				break;
-//			}
-//		}
+//		
 
+		// Departure date
 		for (WebElement we : li4) {
 
-			for (WebElement weFirst : li4) {
-				if (weFirst.getAttribute("aria-label").equals(dateDep)) {
-					System.out.println(we.getAttribute("aria-label"));
-					weFirst.click();
-					
-				}
-
-			}
-
-			if (we.getAttribute("aria-label").equals(dateRet)) {
+			if (we.getAttribute("aria-label").equals(dateDep)) {
 				System.out.println(we.getAttribute("aria-label"));
+				flag = true; // Encontrado!
 				we.click();
-				flag = true;
-				break;
-			} else {
 
-				Thread.sleep(2000);
-				try {
-					do {
-						next.click();
-						Thread.sleep(2000);
-						li4 = getElements(driver, StaticClass.DAYS_OF_THE_CALENDAR, "css");
-
-						for (WebElement we2 : li4) {
-							if (we2.getAttribute("aria-label").equals(dateDep)) {
-
-								System.out.println(we2.getAttribute("aria-label"));
-								we2.click();
-
-							}
-							if (we2.getAttribute("aria-label").equals(dateRet)) {
-
-								System.out.println(we2.getAttribute("aria-label"));
-								we2.click();
-								getElement(driver, StaticClass.FINAL_BUTTON_PICKER_CALENDAR, "css");
-								flag = true;
-								break;
-							}
-
-						}
-					} while (!flag);
-					break;
-				} catch (Exception e) {
-					System.out.println("Element not found in the list");
-
-				}
 			}
 
 		}
+
+		if (!flag) {
+			Thread.sleep(2000);
+			try {
+				do {
+					next.click();
+					Thread.sleep(2000);
+					li4 = getElements(driver, StaticClass.DAYS_OF_THE_CALENDAR, "css");
+					for (WebElement we2 : li4) {
+						if (we2.getAttribute("aria-label").equals(dateDep)) {
+							System.out.println(we2.getAttribute("aria-label"));
+							we2.click();
+							flag = true; // Encontrado!
+						}
+					}
+				} while (!flag);
+
+			} catch (Exception e) {
+				System.out.println("Element not found in the list");
+
+			}
+
+		}
+
+		// Returning date
+		for (WebElement we : li4) {
+
+			if (we.getAttribute("aria-label").equals(dateRet)) {
+				System.out.println(we.getAttribute("aria-label"));
+				flag_two = true; // Encontrado!
+				we.click();
+
+			}
+
+		}
+
+		if (!flag_two) {
+			Thread.sleep(2000);
+			try {
+				do {
+					next.click();
+					Thread.sleep(2000);
+					li4 = getElements(driver, StaticClass.DAYS_OF_THE_CALENDAR, "css");
+					for (WebElement we2 : li4) {
+						if (we2.getAttribute("aria-label").equals(dateRet)) {
+							System.out.println(we2.getAttribute("aria-label"));
+							we2.click();
+							flag_two = true; // Encontrado!
+						}
+					}
+				} while (!flag_two);
+
+			} catch (Exception e) {
+				System.out.println("Element not found in the list");
+
+			}
+
+		}
+
 	}
 
 }
